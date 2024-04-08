@@ -33,8 +33,13 @@ class Producto
      */
     public function getId()
     {
-        return $this->id;
-    }
+        if  (!is_int($this->id) || empty($this->id)) {
+            throw new Exception("El id del producto es inválido");
+            
+            }
+        
+            return $this->id;
+        }
 
     /**
      * Devuelve el nombre del producto.
@@ -43,6 +48,9 @@ class Producto
      */
     public function getNombre()
     {
+        if(empty($this->nombre)){
+            throw new Exception("No se ha asignado un nombre al producto");
+        }
         return $this->nombre;
     }
 
@@ -53,8 +61,13 @@ class Producto
      */
     public function getPrecio()
     {
+        if (!is_numeric($this->precio) || $this->precio <= 0) {
+            throw new InvalidArgumentException('El precio debe ser un número positivo');
+        }
+        
         return $this->precio;
     }
+    
 
     /**
      * Establece la cantidad del producto.
@@ -83,7 +96,7 @@ class Producto
     public function sumarCantidad($cantidad_agregada)
     {
         // Validación de cantidad
-        if (!is_int($cantidad_agregada) || $cantidad_agregada <= 0) {
+        if (!is_int($cantidad_agregada) || $cantidad_agregada <= 0 || $cantidad_agregada === null) {
             throw new InvalidArgumentException('La cantidad agregada debe ser un entero positivo');
         }
 
@@ -108,5 +121,9 @@ class ProductoTest extends TestCase
         Assert::assertEquals('Producto 1', $producto->getNombre());
         Assert::assertEquals(10.00, $producto->getPrecio());
         Assert::assertEquals(2, $producto->getCantidad());
-    }
+        Assert::assertIsFloat($producto->getPrecio());
+        Assert:: assertIsInt($producto->getId());
+        
+       
+        }
 }
