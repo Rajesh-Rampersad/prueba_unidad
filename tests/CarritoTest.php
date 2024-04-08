@@ -181,6 +181,7 @@ class CarritoTest extends TestCase
 
         // Verifica que el carrito no esté vacío después de agregar productos
         Assert::assertNotEmpty($carrito->productos);
+        Assert::AssertIsArray($carrito->productos);
 
         // Verifica que la cantidad de productos en el carrito sea la correcta
         Assert::assertEquals(3, count($carrito->productos));
