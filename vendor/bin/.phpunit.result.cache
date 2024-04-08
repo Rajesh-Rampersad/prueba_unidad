@@ -1,0 +1,1 @@
+{"version":1,"defects":{"tests\\CarritoTest::testCarro_si_esta_vacio":4,"tests\\CarritoTest::testCarro_agregar_producto":4},"times":{"tests\\CarritoTest::testCarro_si_esta_vacio":0.002,"tests\\CarritoTest::testCarro_agregar_producto":0.002}}
